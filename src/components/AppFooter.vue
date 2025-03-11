@@ -1,3 +1,6 @@
+<!-- Button navigation bar -->
+
+<!-- Template is the layout -->
 <template>
     <footer class="footer">
       <p>
@@ -8,6 +11,7 @@
     </footer>
   </template>
 
+<!-- Javascript -->
 <script>
 import { useCartStore } from "../store/cart"; 
 import { computed } from "vue";
@@ -23,6 +27,7 @@ export default {
 };
 </script>
   
+<!-- CSS -->
   <style>
   .footer {
     background: rgb(0, 117, 49);
@@ -41,7 +46,7 @@ export default {
     justify-content: center;
     align-items: center;
     gap: 15px;
-    padding-right: 40px; /* Adjust if needed */
+    padding-right: 40px;
   }
   
   .footer a {

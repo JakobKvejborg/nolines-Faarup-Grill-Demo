@@ -1,11 +1,13 @@
 <!-- Top navigation bar -->
 
+<!-- Template is the layout -->
 <template>
   <nav class="navbar">
     <h1>{{ restaurantName }}</h1> 
   </nav>
 </template>
 
+<!-- Javascript -->
 <script>
 export default {
   props: {
@@ -17,6 +19,7 @@ export default {
 };
 </script>
 
+<!-- CSS -->
 <style>
 .navbar {
   background: rgb(0, 117, 49);

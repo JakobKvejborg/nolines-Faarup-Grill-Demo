@@ -13,6 +13,7 @@ export default {
 };
 </script>
 
+<!-- CSS -->
 <style>
 #app {
   font-family: Arial, sans-serif;

@@ -1,6 +1,5 @@
-// The "store" folder handles data logic (adding/removing items), while CartView.vue is only responsible for displaying the cart. 
+// The "store" folder handles data logic (adding/removing items), while CartView.vue is only responsible for displaying the cart
 
-// JAVASCRIPT
 import { defineStore } from "pinia";
 
 export const useCartStore = defineStore("cart", {

@@ -1,16 +1,14 @@
-<!-- CartView.vue is only responsible for displaying the cart, no logic here -->
+<!-- CartView.vue is only responsible for displaying the shopping cart, retrieves and displays data from the store -->
 
 <template>
   <div>
-    <appNavbar :restaurantName="restaurantName" /> <!-- Display the restaurant name at the top -->
-
+    <appNavbar :restaurantName="restaurantName" /> <!-- Uses the appNavbar component to display the restaurant name at the top -->
     <div class="cart">
       <h2>Indkøbskurven</h2>
 
-      <div v-if="cartItems.length === 0">Kurven er tom</div>
-
+      <div v-if="cartItems.length === 0">Kurven er tom</div> <!-- If the cart is empty, do this -->
       <div v-else>
-        <div v-for="item in cartItems" :key="item.id" class="cart-item">
+        <div v-for="item in cartItems" :key="item.id" class="cart-item"> <!-- If the cart is not empty, loop through cartItems-->
           <img :src="item.image" :alt="item.name" />
           <div class="cart-details">
             <h3>{{ item.name }}</h3>
@@ -21,6 +19,7 @@
           </div>
         </div>
 
+        <!-- Pay with MobilePay button -->
         <button class="pay-with-mobilepay-btn" @click="openMobilePay">
           <img src="https://play-lh.googleusercontent.com/NGSk6n-n_xpqG6-TI3U-fYqX7FF-0vC_2EnqOv-nuNZcX598jcQkqmZGueImfSQ3DWU">
           Betal med MobilePay
@@ -35,6 +34,7 @@
   </div>
 </template>
 
+<!-- Javascript -->
 <script>
 import { useCartStore } from "../store/cart";
 import { useRestaurantStore } from "../store/restaurant"; // Import restaurant store

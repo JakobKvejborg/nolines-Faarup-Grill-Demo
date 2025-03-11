@@ -1,4 +1,6 @@
 <!-- The page for the products -->
+
+<!-- Template is the layout -->
 <template>
   <div>
     <appNavbar :restaurantName="restaurantName" />
@@ -18,6 +20,7 @@
   </div>
 </template>
 
+<!-- Javascript -->
 <script>
 import { useRestaurantStore } from "../store/restaurant"; // Import Pinia store
 import { useCartStore } from "../store/cart";
@@ -49,7 +52,7 @@ export default defineComponent({
 });
 </script>
 
-  
+  <!-- CSS -->
   <style>
   .menu {
     padding: 20px;

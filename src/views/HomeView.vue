@@ -1,4 +1,4 @@
-<!-- This is the front page of the app -->
+<!-- This is the front page of the app where you can select which restaurant you want to order from -->
 
 <!-- Template is the layout -->
 <template> 
@@ -35,6 +35,7 @@ export default {
     const router = useRouter();
     const restaurantStore = useRestaurantStore(); // Use the store
 
+    // Function to fetch all the restaurants from the database
     const fetchRestaurants = async () => {
       try {
         const response = await axios.get("https://localhost:7070/api/restaurant");

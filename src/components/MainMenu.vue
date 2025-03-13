@@ -4,11 +4,15 @@
 <template>
   <div>
     <appNavbar :restaurantName="restaurantName" />
+
     <div class="menu">
       <h2>Menu</h2>
+      <p v-if="loading">Loading products...</p>
+      <p v-if="error" class="error">{{ error }}</p>
+
       <div 
-        v-for="item in menuItems" 
-        :key="item.id" 
+        v-for="item in products" 
+        :key="item.productId" 
         class="menu-item" 
         @click="addToCart(item)"
       >
@@ -22,34 +26,30 @@
 
 <!-- Javascript -->
 <script>
-import { useRestaurantStore } from "../store/restaurant"; // Import Pinia store
 import { useCartStore } from "../store/cart";
-import { defineComponent } from "vue";
-import AppNavbar from "../components/AppNavbar.vue"; 
+import { useRestaurantStore } from "../store/restaurant"; // ✅ Import the missing store
+import { computed, onMounted } from "vue";
+import appNavbar from "../components/AppNavbar.vue";
 
-export default defineComponent({
-  components: { AppNavbar },
+export default {
+  components: { appNavbar },
   setup() {
-    const restaurantStore = useRestaurantStore(); 
-    const restaurantName = restaurantStore.selectedRestaurantName || "Ukendt Restaurant"; // Get from store
-
     const cartStore = useCartStore();
-    const addToCart = (item) => {
-      cartStore.addToCart(item);
-    };
+    const restaurantStore = useRestaurantStore(); // ✅ Define it properly
 
-    return { addToCart, restaurantName };
-  },
-  data() {
+    onMounted(() => {
+      cartStore.fetchProducts();
+    });
+
     return {
-      menuItems: [
-        { id: 1, name: "Fønix Burger", price: 94, image: "https://www.faarupsommerland.dk/media/g14mhwmv/foenix-burger.jpg?rmode=crop&width=540&height=720&format=webp" },
-        { id: 2, name: "Fårup Burger", price: 84, image: "https://www.faarupsommerland.dk/media/fzdkozbn/burger.jpg?rmode=crop&width=540&height=720&format=webp" },
-        { id: 3, name: "Orkanen Burger", price: 96, image: "https://www.faarupsommerland.dk/media/gprlq5eh/orkanen-burger-2020.jpg?rmode=crop&width=540&height=720&format=webp" }
-      ]
+      restaurantName: computed(() => restaurantStore.selectedRestaurantName || "Ukendt Restaurant"), // ✅ Use correct store
+      products: computed(() => cartStore.products),
+      loading: computed(() => cartStore.loading),
+      error: computed(() => cartStore.error),
+      addToCart: cartStore.addToCart,
     };
-  }
-});
+  },
+};
 </script>
 
   <!-- CSS -->
